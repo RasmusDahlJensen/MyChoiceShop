@@ -49,7 +49,11 @@ ProductModel.init(
 	},
 	{
 		sequelize,
-		modelName: "Product",
+		modelName: "product",
+		freezeTableName: true,
+		underscored: true,
+		createdAt: false,
+		updatedAt: false,
 	}
 );
 

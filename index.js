@@ -1,19 +1,11 @@
-import { Sequelize } from "sequelize";
-import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
-import express from "express";
-import ProductRouter from "./routes/productRoutes.js";
+import { initRouter } from "./routes/init.sequelize.js";
 
 dotenv.config();
 
-// Create an Express application
-const app = express();
-const port = process.env.PORT;
+const app = express()
 
-// Create a Sequelize instance
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-	dialect: "postgres",
-});
+app.use(initRouter)
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -34,6 +26,7 @@ app.use(
 		extended: true,
 	})
 );
+
 
 // Products route
 app.get("/products", (req, res) => {

@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/db.sequelize.js";
 
 class UserModel extends Model {}
@@ -40,4 +40,13 @@ UserModel.init({
         type: DataTypes.BOOLEAN,
         allowNull: false 
     }
+}, {
+    sequelize,
+    modelName: "user",
+    freezeTableName: true,
+    underscored: true,
+    createdAt: false,
+    updatedAt: false,
 })
+
+export {UserModel}
