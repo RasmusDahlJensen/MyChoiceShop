@@ -7,7 +7,6 @@ UserModel.init(
 	{
 		id: {
 			type: DataTypes.UUID,
-			autoIncrement: true,
 			allowNull: false,
 			primaryKey: true,
 		},
