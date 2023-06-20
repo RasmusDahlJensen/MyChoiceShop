@@ -1,10 +1,8 @@
-import { Sequelize } from "sequelize"
-import dotenv from "dotenv"
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-const sequelize = new Sequelize(
-   process.env.DATABASE_URL
-)
-
-export {sequelize}
+export const sequelize = new Sequelize(process.env.DATABASE_URL, {
+	dialect: "postgres",
+});
