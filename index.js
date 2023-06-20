@@ -1,45 +1,14 @@
-import { Sequelize, DataTypes } from "sequelize";
-import { createClient } from "@supabase/supabase-js";
+import express from "express"
 import dotenv from "dotenv";
-import express from "express";
-import ProductRouter from "./routes/productRoutes.js";
+import { initRouter } from "./routes/init.sequelize.js";
 
 dotenv.config();
 
-// Create an Express application
-const app = express();
-const port = process.env.PORT;
+const app = express()
 
-// Create a Sequelize instance
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-	dialect: "postgres",
-});
+app.use(initRouter)
 
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// Start the server
-app.listen(port, () => {
-	console.log(`Express app http://localhost:${port}`);
-});
-
-// Parse request bodies as JSON
-app.use(express.json());
-
-// Parse URL-encoded request bodies
-app.use(
-	express.urlencoded({
-		extended: true,
-	})
-);
-
-
-// Products route
-app.get("/products", (req, res) => {
-	res.send("Products");
-});
-
-// Register UserRouter for handling user-related routes
-app.use(ProductRouter);
+app.listen(4000, () => {
+    console.clear();
+    console.log("Server is listening on port 4000");
+})

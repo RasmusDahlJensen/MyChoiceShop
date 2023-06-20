@@ -8,6 +8,7 @@ ReveiwModel.init({
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
+        primaryKey: true,
     },
     user_id: {
         type: DataTypes.UUID,
@@ -25,6 +26,13 @@ ReveiwModel.init({
         type: DataTypes.INTEGER,
         allowNull: true
     }
+}, {
+    sequelize,
+    modelName: "review",
+    freezeTableName: true,
+    underscored: true,
+    createdAt: false,
+    updatedAt: false,
 })
 
 export {ReveiwModel}

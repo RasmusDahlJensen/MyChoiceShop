@@ -7,7 +7,8 @@ CategoryModel.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        autoIncrement: true
+        autoIncrement: true,
+        primaryKey: true,
     },
     name: {
         type: DataTypes.STRING,
@@ -17,6 +18,13 @@ CategoryModel.init({
         type: DataTypes.INTEGER,
         allowNull: false
     }
+},{
+    sequelize,
+    modelName: "category",
+    freezeTableName: true,
+    underscored: true,
+    createdAt: false,
+    updatedAt: false,
 })
 
 export {CategoryModel}

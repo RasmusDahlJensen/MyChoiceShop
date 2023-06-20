@@ -22,29 +22,36 @@ ProductModel.init({
         allowNull: true
     },
     price: {
-        types: DataTypes.FLOAT,
+        type: DataTypes.FLOAT,
         allowNull: true
     },
     image: {
-        types: DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     description: {
-        types: DataTypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     rating: {
-        types: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
     quantity: {
-        types: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     review: {
-        types: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true
     }
+}, {
+    sequelize,
+    modelName: "product",
+    freezeTableName: true,
+    underscored: true,
+    createdAt: false,
+    updatedAt: false,
 })
 
 export {ProductModel}
