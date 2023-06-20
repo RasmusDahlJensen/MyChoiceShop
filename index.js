@@ -1,8 +1,32 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
+import express from "express";
+import ProductRouter from "./routes/productRoutes.js";
 
 dotenv.config();
+
+// Create an Express application
+const app = express();
+const port = process.env.PORT;
+
+// Parse request bodies as JSON
+app.use(express.json());
+
+// Parse URL-encoded request bodies
+app.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
+
+// Products route
+app.get("/products", (req, res) => {
+	res.send("Products");
+});
+
+// Register UserRouter for handling user-related routes
+app.use(ProductRouter);
 
 // Create a Sequelize instance
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
@@ -27,34 +51,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Sync the Sequelize models with the database
-sequelize
-	.sync()
-	.then(() => {
-		console.log("Sequelize models synced with the database.");
-
-		// Perform database operations using Sequelize
-		// Example: Create a new user
-		User.create({ name: "John Doe", email: "johndoe@example.com" })
-			.then((user) => {
-				console.log("User created:", user.toJSON());
-			})
-			.catch((error) => {
-				console.error("Failed to create user:", error);
-			});
-	})
-	.catch((error) => {
-		console.error("Sequelize sync error:", error);
-	});
-
-// Perform Supabase operations
-// Example: Retrieve all users from Supabase
-supabase
-	.from("users")
-	.select("*")
-	.then((response) => {
-		console.log("Users retrieved from Supabase:", response.data);
-	})
-	.catch((error) => {
-		console.error("Failed to retrieve users from Supabase:", error);
-	});
+// Start the server
+app.listen(port, () => {
+	console.log(`Express app http://localhost:${port}`);
+});
