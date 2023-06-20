@@ -1,20 +1,17 @@
 import dotenv from "dotenv";
 import { initRouter } from "./routes/init.sequelize.js";
+import express from "express";
+import ProductRouter from "./routes/productRoutes.js";
 
 dotenv.config();
 
-const app = express()
+const app = express();
 
-app.use(initRouter)
-
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+app.use(initRouter);
 
 // Start the server
-app.listen(port, () => {
-	console.log(`Express app http://localhost:${port}`);
+app.listen(4000, () => {
+	console.log(`Express app http://localhost:4000`);
 });
 
 // Parse request bodies as JSON
@@ -27,7 +24,6 @@ app.use(
 	})
 );
 
-
 // Products route
 app.get("/products", (req, res) => {
 	res.send("Products");
@@ -35,3 +31,4 @@ app.get("/products", (req, res) => {
 
 // Register UserRouter for handling user-related routes
 app.use(ProductRouter);
+app.use(initRouter)
