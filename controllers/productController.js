@@ -1,47 +1,44 @@
-import dotenv from "dotenv";
+import { ProductModel } from "../models/productModel.js";
 
-dotenv.config();
-//  Initializes a new instance of the UserController.
 class productController {
 	constructor() {
 		console.log("User Controller initialized");
 	}
-	//  creates a product
+
+	// creates a product
 	async create(req, res) {
-		console.log("Create controller fired");
+		try {
+			const {
+				product_name,
+				brand,
+				category_id,
+				price,
+				image,
+				description,
+				rating,
+				quantity,
+				review,
+			} = req.body;
+			const product = await ProductModel.create({
+				product_name,
+				brand,
+				category_id,
+				price,
+				image,
+				description,
+				rating,
+				quantity,
+				review,
+			});
+			console.log("Product created:", product.toJSON());
+			res
+				.status(201)
+				.json({ message: "Product created successfully", product });
+		} catch (error) {
+			console.error("Failed to create product:", error);
+			res.status(500).json({ error: "Failed to create product" });
+		}
 	}
 }
 
 export default productController;
-
-// Sync the Sequelize models with the database
-// sequelize
-// 	.sync()
-// 	.then(() => {
-// 		console.log("Sequelize models synced with the database.");
-
-// 		// Perform database operations using Sequelize
-// 		// Example: Create a new user
-// 		User.create({ name: "John Doe", email: "johndoe@example.com" })
-// 			.then((user) => {
-// 				console.log("User created:", user.toJSON());
-// 			})
-// 			.catch((error) => {
-// 				console.error("Failed to create user:", error);
-// 			});
-// 	})
-// 	.catch((error) => {
-// 		console.error("Sequelize sync error:", error);
-// 	});
-
-// Perform Supabase operations
-// Example: Retrieve all users from Supabase
-// supabase
-// 	.from("users")
-// 	.select("*")
-// 	.then((response) => {
-// 		console.log("Users retrieved from Supabase:", response.data);
-// 	})
-// 	.catch((error) => {
-// 		console.error("Failed to retrieve users from Supabase:", error);
-// 	});

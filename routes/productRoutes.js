@@ -5,9 +5,8 @@ import ProductController from "../controllers/productController.js";
 const controller = new ProductController();
 const ProductRouter = express.Router();
 
-// Endpoint for creating a user
-ProductRouter.post("/products/create", (req, res) => {
-	console.log("Handling user creation request (POST)");
+ProductRouter.post("/products/create", async (req, res) => {
+	console.log("Handling product create request (POST)");
 	controller.create(req, res);
 });
 

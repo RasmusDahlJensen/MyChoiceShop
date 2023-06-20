@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize } from "sequelize";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import express from "express";
@@ -34,7 +34,6 @@ app.use(
 		extended: true,
 	})
 );
-
 
 // Products route
 app.get("/products", (req, res) => {
