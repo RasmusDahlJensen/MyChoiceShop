@@ -41,3 +41,5 @@ UserModel.init({
         allowNull: false 
     }
 })
+
+export {UserModel}

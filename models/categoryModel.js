@@ -19,4 +19,4 @@ CategoryModel.init({
     }
 })
 
-export {category_id}
+export {CategoryModel}
