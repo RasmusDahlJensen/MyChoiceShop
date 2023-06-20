@@ -24,7 +24,7 @@ class productController {
 				brand,
 				category_id,
 				price,
-				image,
+				image,	
 				description,
 				rating,
 				quantity,
