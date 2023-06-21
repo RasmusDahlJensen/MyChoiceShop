@@ -1,8 +1,14 @@
 import express from "express";
 import UserController from "../controllers/userController.js";
+import { ReviewModel } from "../models/reviewModel.js";
+import { UserModel } from "../models/userModel.js";
 
 const controller = new UserController();
 const UserRouter = express.Router();
+
+UserModel.hasMany(ReviewModel)
+ReviewModel.belongsTo(UserModel)
+
 
 UserRouter.get("/users", async (req, res) => {
 	console.log("Handling user get request (GETE)");
