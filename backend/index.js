@@ -4,6 +4,7 @@ import express from "express";
 import ProductRouter from "./routes/productRoutes.js";
 import CategoryRouter from "./routes/categoryRoutes.js";
 import ReviewRouter from "./routes/reviewRouter.js";
+import UserRouter from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ const app = express();
 
 // Start the server
 app.listen(4000, () => {
-	console.clear()
+	console.clear();
 	console.log(`Express app http://localhost:4000`);
 });
 
@@ -25,13 +26,9 @@ app.use(
 	})
 );
 
-// Products route
-app.get("/products", (req, res) => {
-	res.send("Products");
-});
-
 // Register UserRouter for handling user-related routes
 app.use("/api/", ProductRouter);
 app.use("/api/", initRouter)
 app.use("/api/", CategoryRouter)
 app.use("/api/", ReviewRouter)
+app.use("api", UserRouter)

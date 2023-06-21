@@ -1,10 +1,10 @@
-import express from "express"
+import express from "express";
 
 //model & controller
 import CategoryController from "../controllers/categoryController.js"
 
 //create category router
-const CategoryRouter = express.Router()
+const CategoryRouter = express.Router();
 
 //category routes starts here
 CategoryRouter.get("/category", (req, res) => {
@@ -32,4 +32,4 @@ CategoryRouter.delete("/category/:id", (req, res) => {
 })
 //#### category routes end here ####
 
-export default CategoryRouter
+export default CategoryRouter;
