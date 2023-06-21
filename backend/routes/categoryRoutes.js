@@ -1,31 +1,35 @@
 import express from "express";
 
-//model
-import { CategoryModel } from "../models/categoryModel.js";
+//model & controller
+import CategoryController from "../controllers/categoryController.js"
 
 //create category router
 const CategoryRouter = express.Router();
 
 //category routes starts here
-CategoryRouter.get("/category", async (req, res) => {
-	const result = await CategoryModel.findAll();
-	res.json(result);
-});
-CategoryRouter.post("/category", async (req, res) => {
-	let { name } = req.body;
+CategoryRouter.get("/category", (req, res) => {
+    const category = new CategoryController()
 
-	name = name.toLowerCase().trim();
+    return category.findAll(req, res)
+})
+// add category
+CategoryRouter.post("/category", (req, res) => {
+    const category = new CategoryController()
 
-	try {
-		const result = await CategoryModel.create({
-			name,
-		});
-		res.send(result);
-	} catch {
-		res.json({ error: "Could not add The category." });
-	}
-});
-CategoryRouter;
-//## category routes end here
+    return category.create(req, res)
+})
+//update category
+CategoryRouter.put("/category", (req, res) => {
+    const category = new CategoryController()
+
+    return category.update(req, res)
+})
+// delete category
+CategoryRouter.delete("/category/:id", (req, res) => {
+    const category = new CategoryController()
+
+    return category.delete(req, res)
+})
+//#### category routes end here ####
 
 export default CategoryRouter;

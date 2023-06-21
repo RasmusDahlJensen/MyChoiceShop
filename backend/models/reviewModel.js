@@ -23,8 +23,12 @@ ReviewModel.init({
         allowNull: true,
     },
     comment: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TEXT,
         allowNull: true,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false
     }
 }, {
     sequelize,
