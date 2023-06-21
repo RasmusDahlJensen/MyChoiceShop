@@ -39,7 +39,7 @@ class UserController {
 	async list(req, res) {
 		try {
 			const users = await UserModel.findAll({
-				attributes: ["username", "firstname", "lastname", "address"],
+				attributes: ["id", "username", "firstname", "lastname", "address"],
 			});
 			res.status(200).json(users);
 		} catch (error) {
@@ -51,14 +51,8 @@ class UserController {
 	async update(req, res) {
 		try {
 			const UserId = req.params.id;
-			const {
-				username,
-				email,
-				firstname,
-				lastname,
-				address,
-				password,
-			} = req.body;
+			const { username, email, firstname, lastname, address, password } =
+				req.body;
 
 			const User = await UserModel.findByPk(UserId);
 
@@ -76,9 +70,7 @@ class UserController {
 			});
 
 			console.log("User updated:", User.toJSON());
-			res
-				.status(200)
-				.json({ message: "User updated successfully", User });
+			res.status(200).json({ message: "User updated successfully", User });
 		} catch (error) {
 			console.error("Failed to update User:", error);
 			res.status(500).json({ error: "Failed to update User" });
