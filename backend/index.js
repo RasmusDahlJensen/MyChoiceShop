@@ -10,6 +10,7 @@ const app = express();
 
 // Start the server
 app.listen(4000, () => {
+	console.clear()
 	console.log(`Express app http://localhost:4000`);
 });
 
