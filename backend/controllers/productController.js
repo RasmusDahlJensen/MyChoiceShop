@@ -2,7 +2,7 @@ import { ProductModel } from "../models/productModel.js";
 
 class productController {
 	constructor() {
-		console.log("User Controller initialized");
+		console.log("Product Controller initialized");
 	}
 
 	// creates a product

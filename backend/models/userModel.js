@@ -9,8 +9,9 @@ UserModel.init(
 			type: DataTypes.UUID,
 			allowNull: false,
 			primaryKey: true,
+			defaultValue: DataTypes.UUIDV4,
 		},
-		name: {
+		username: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -27,12 +28,11 @@ UserModel.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		email: {
+		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: true,
 		},
-		password: {
+		address: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -43,7 +43,7 @@ UserModel.init(
 	},
 	{
 		sequelize,
-		modelName: "user",
+		modelName: "User",
 		freezeTableName: true,
 		underscored: true,
 		createdAt: true,
