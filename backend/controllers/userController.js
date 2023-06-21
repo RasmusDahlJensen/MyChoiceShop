@@ -36,6 +36,16 @@ class UserController {
 		}
 	}
 
+	async list(req, res) {
+		try {
+			const users = await UserModel.findAll({attributes:[username]});
+			res.status(200).json(users);
+		} catch (error) {
+			console.error("Failed to retrieve users:", error);
+			res.status(500).json({ error: "Failed to retrieve users" });
+		}
+	}
+
 }
 
 export default UserController;
