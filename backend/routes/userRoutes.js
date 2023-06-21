@@ -9,4 +9,5 @@ UserRouter.post("/users/create", async (req, res) => {
 	controller.create(req, res);
 });
 
+
 export default UserRouter;

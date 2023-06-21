@@ -35,6 +35,7 @@ class UserController {
 			res.status(500).json({ error: "Failed to create user" });
 		}
 	}
+
 }
 
 export default UserController;

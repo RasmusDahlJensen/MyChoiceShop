@@ -91,6 +91,25 @@ class ProductController {
 			res.status(500).json({ error: "Failed to update product" });
 		}
 	}
+
+	async delete(req, res) {
+		try {
+			const productId = req.params.id;
+			const product = await ProductModel.findByPk(productId);
+
+			if (!product) {
+				return res.status(404).json({ error: "Product not found" });
+			}
+
+			await product.destroy();
+
+			console.log("Product deleted:", product.toJSON());
+			res.status(200).json({ message: "Product deleted successfully" });
+		} catch (error) {
+			console.error("Failed to delete product:", error);
+			res.status(500).json({ error: "Failed to delete product" });
+		}
+	}
 }
 
 export default ProductController;
