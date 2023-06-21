@@ -1,9 +1,9 @@
-import express from "express"
+import express from "express";
 
-const CategoryRouter = express.Router()
+const CategoryRouter = express.Router();
 
-CategoryRouter.get("/products", (req, res) => {
-    res.json("hey")
-})
+CategoryRouter.get("/category", (req, res) => {
+	res.json("hey");
+});
 
-export default CategoryRouter
+export default CategoryRouter;
