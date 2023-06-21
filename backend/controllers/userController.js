@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 import { UserModel } from "../models/userModel.js";
 import { ReviewModel } from "../models/reviewModel.js";
 
-UserModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(UserModel)
+UserModel.hasMany(ReviewModel);
+ReviewModel.belongsTo(UserModel);
 
 class UserController {
 	constructor() {
@@ -46,7 +46,7 @@ class UserController {
 		try {
 			const users = await UserModel.findAll({
 				attributes: ["id", "username", "firstname", "lastname", "address"],
-				include: ReviewModel
+				include: ReviewModel,
 			});
 			res.status(200).json(users);
 		} catch (error) {
