@@ -46,7 +46,7 @@ UserModel.init(
 		modelName: "user",
 		freezeTableName: true,
 		underscored: true,
-		createdAt: false,
+		createdAt: true,
 		updatedAt: false,
 	}
 );
