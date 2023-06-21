@@ -1,11 +1,10 @@
 import { ProductModel } from "../models/productModel.js";
 
-class productController {
+class ProductController {
 	constructor() {
 		console.log("Product Controller initialized");
 	}
 
-	// creates a product
 	async create(req, res) {
 		try {
 			const {
@@ -24,7 +23,7 @@ class productController {
 				brand,
 				category_id,
 				price,
-				image,	
+				image,
 				description,
 				rating,
 				quantity,
@@ -39,6 +38,16 @@ class productController {
 			res.status(500).json({ error: "Failed to create product" });
 		}
 	}
+
+	async list(req, res) {
+		try {
+			const products = await ProductModel.findAll();
+			res.status(200).json(products);
+		} catch (error) {
+			console.error("Failed to retrieve products:", error);
+			res.status(500).json({ error: "Failed to retrieve products" });
+		}
+	}
 }
 
-export default productController;
+export default ProductController;
