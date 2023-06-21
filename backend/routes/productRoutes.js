@@ -14,4 +14,9 @@ ProductRouter.get("/products", async (req, res) => {
 	controller.list(req, res);
 });
 
+ProductRouter.put("/products/update/:id", async (req, res) => {
+	console.log("Handling product update request (PUT)");
+	controller.update(req, res);
+});
+
 export default ProductRouter;

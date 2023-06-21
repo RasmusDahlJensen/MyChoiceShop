@@ -48,6 +48,49 @@ class ProductController {
 			res.status(500).json({ error: "Failed to retrieve products" });
 		}
 	}
+
+	async update(req, res) {
+		try {
+			const productId = req.params.id;
+			const {
+				product_name,
+				brand,
+				category_id,
+				price,
+				image,
+				description,
+				rating,
+				quantity,
+				review,
+			} = req.body;
+
+			const product = await ProductModel.findByPk(productId);
+
+			if (!product) {
+				return res.status(404).json({ error: "Product not found" });
+			}
+
+			await product.update({
+				product_name,
+				brand,
+				category_id,
+				price,
+				image,
+				description,
+				rating,
+				quantity,
+				review,
+			});
+
+			console.log("Product updated:", product.toJSON());
+			res
+				.status(200)
+				.json({ message: "Product updated successfully", product });
+		} catch (error) {
+			console.error("Failed to update product:", error);
+			res.status(500).json({ error: "Failed to update product" });
+		}
+	}
 }
 
 export default ProductController;
