@@ -47,6 +47,43 @@ class UserController {
 			res.status(500).json({ error: "Failed to retrieve users" });
 		}
 	}
+
+	async update(req, res) {
+		try {
+			const UserId = req.params.id;
+			const {
+				username,
+				email,
+				firstname,
+				lastname,
+				address,
+				password,
+			} = req.body;
+
+			const User = await UserModel.findByPk(UserId);
+
+			if (!User) {
+				return res.status(404).json({ error: "User not found" });
+			}
+
+			await User.update({
+				username,
+				email,
+				firstname,
+				lastname,
+				address,
+				password,
+			});
+
+			console.log("User updated:", User.toJSON());
+			res
+				.status(200)
+				.json({ message: "User updated successfully", User });
+		} catch (error) {
+			console.error("Failed to update User:", error);
+			res.status(500).json({ error: "Failed to update User" });
+		}
+	}
 }
 
 export default UserController;
