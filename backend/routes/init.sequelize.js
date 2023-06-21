@@ -5,7 +5,7 @@ import { sequelize } from "../config/db.sequelize.js"
 import { CartModel } from "../models/cartModel.js"
 import { CategoryModel } from "../models/categoryModel.js"
 import { ProductModel } from "../models/productModel.js"
-import { ReveiwModel } from "../models/reviewModel.js"
+import { ReviewModel } from "../models/reviewModel.js"
 import { UserModel } from "../models/userModel.js"
 
 

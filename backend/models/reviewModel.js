@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/db.sequelize.js";
 
-class ReveiwModel extends Model {}
+class ReviewModel extends Model {}
 
-ReveiwModel.init({
+ReviewModel.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -12,27 +12,27 @@ ReveiwModel.init({
     },
     user_id: {
         type: DataTypes.UUID,
-        allowNull: false
+        allowNull: false,
     },
     product_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     rating: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
     comment: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     }
 }, {
     sequelize,
     modelName: "review",
     freezeTableName: true,
     underscored: true,
-    createdAt: false,
+    createdAt: true,
     updatedAt: false,
 })
 
-export {ReveiwModel}
+export {ReviewModel}
