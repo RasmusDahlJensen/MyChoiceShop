@@ -7,7 +7,7 @@ class ReviewController{
 
     findAll = async (req, res) => {
         try{
-            const result = ReviewModel.findAll()
+            const result = await ReviewModel.findAll()
             res.json(result)
         } catch{
             res.json({error: "Error happend while trying to get reviews"})
@@ -54,11 +54,13 @@ class ReviewController{
 
     findOne = async (req, res) => {
         const id = req.params.id;
-
         try{
-            await ReviewModel.findOne({
-                where: id
+            const result = await ReviewModel.findOne({
+                where: {
+                    id
+                }
             })
+            res.json(result)
         }catch(err){
             res.json({
                 error: "Could not get review",
