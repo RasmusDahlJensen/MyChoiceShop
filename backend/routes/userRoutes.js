@@ -27,6 +27,7 @@ UserRouter.delete("/users/delete/:id", async (req, res) => {
 	controller.delete(req, res);
 });
 
+//Login Routes
 UserRouter.post("/users/login", async (req, res) => {
 	console.log("Handling user login request");
 	controller.login(req, res);
