@@ -2,11 +2,13 @@ import express from "express"
 import { sequelize } from "../config/db.sequelize.js"
 
 // models
+import { BrandModel } from "../models/brandModel.js"
 import { CartModel } from "../models/cartModel.js"
 import { CategoryModel } from "../models/categoryModel.js"
 import { ProductModel } from "../models/productModel.js"
 import { ReviewModel } from "../models/reviewModel.js"
 import { UserModel } from "../models/userModel.js"
+
 
 
 const initRouter = express.Router()
