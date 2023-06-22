@@ -35,7 +35,10 @@ class ProductController {
 				.json({ message: "Product created successfully", product });
 		} catch (error) {
 			console.error("Failed to create product:", error);
-			res.status(500).json({ error: "Failed to create product" });
+			res.status(500).json({
+                error: err,
+                errMsg: "Something went wrong trying to insert the data" 
+            })
 		}
 	}
 
@@ -45,7 +48,10 @@ class ProductController {
 			res.status(200).json(products);
 		} catch (error) {
 			console.error("Failed to retrieve products:", error);
-			res.status(500).json({ error: "Failed to retrieve products" });
+			res.status(500).json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
 		}
 	}
 
@@ -86,9 +92,12 @@ class ProductController {
 			res
 				.status(200)
 				.json({ message: "Product updated successfully", product });
-		} catch (error) {
+		} catch(err) {
 			console.error("Failed to update product:", error);
-			res.status(500).json({ error: "Failed to update product" });
+			res.status(500).json({
+                error: err,
+                errMsg: "Something went wrong trying to update the data" 
+            })
 		}
 	}
 
@@ -107,7 +116,10 @@ class ProductController {
 			res.status(200).json({ message: "Product deleted successfully" });
 		} catch (error) {
 			console.error("Failed to delete product:", error);
-			res.status(500).json({ error: "Failed to delete product" });
+			res.status(500).json({
+                error: err,
+                errMsg: "Something went wrong trying to delete the data" 
+            })
 		}
 	}
 }

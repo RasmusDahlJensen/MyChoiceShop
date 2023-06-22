@@ -6,9 +6,16 @@ class CategoryController {
     }
 
     findAll = async (req, res) => {
-        const result = await CategoryModel.findAll()
+        try{
+            const result = await CategoryModel.findAll()
         
-        res.json(result)
+            res.json(result)
+        }catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
+        }
         
         return true
     }
@@ -25,8 +32,11 @@ class CategoryController {
                 name,
             })
             res.send(result)
-        } catch{
-            res.json({"error": "Could not add The category."})
+        } catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to insert the data" 
+            })
         }
 
         return true
@@ -43,8 +53,11 @@ class CategoryController {
             })
             
             res.json({msg: "Sucessfully Deleted"})
-        } catch{
-            res.json({error: "Could not Remove The category."})
+        } catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to delete the data" 
+            })
         }
 
         return true
@@ -63,8 +76,11 @@ class CategoryController {
                 }
             })
             res.send({msg: "Sucessfully Updated Category to " + name})
-        } catch{
-            res.json({"error": "Could not add The category."})
+        } catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to update the data" 
+            })  
         }
 
         return true

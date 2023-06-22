@@ -10,7 +10,10 @@ class ReviewController{
             const result = await ReviewModel.findAll()
             res.json(result)
         } catch{
-            res.json({error: "Error happend while trying to get reviews"})
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
         }
         return true
     }
@@ -28,8 +31,8 @@ class ReviewController{
             res.json(result)
         } catch(err){
             res.json({
-                error: "Error happend while trying to get reviews",
-                err_msg: err
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
             })
         }
         return true
@@ -47,7 +50,10 @@ class ReviewController{
             
             res.json({msg: "Sucessfully Deleted"})
         } catch{
-            res.json({error: "Could Not Remove The Review."})
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to delete the data" 
+            })
         }
         return true
     }
@@ -63,8 +69,8 @@ class ReviewController{
             res.json(result)
         }catch(err){
             res.json({
-                error: "Could not get review",
-                err_msg: err
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
             })
         }
     }

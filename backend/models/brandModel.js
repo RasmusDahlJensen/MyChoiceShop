@@ -16,7 +16,7 @@ BrandModel.init({
     },
 },{
     sequelize,
-    modelName: "cart",
+    modelName: "brands",
     freezeTableName: true,
     underscored: true,
     createdAt: false,

@@ -42,7 +42,10 @@ class UserController {
 			res.status(201).json({ message: "User created successfully", user });
 		} catch (error) {
 			console.error("Failed to create user:", error);
-			res.status(500).json({ error: "Failed to create user" });
+			res.status(500).json({
+                error: error,
+                errMsg: "Something went wrong trying to insert the data" 
+            })
 		}
 	}
 
@@ -55,7 +58,10 @@ class UserController {
 			res.status(200).json(users);
 		} catch (error) {
 			console.error("Failed to retrieve users:", error);
-			res.status(500).json({ error: "Failed to retrieve users" });
+			res.status(500).json({
+                error: error,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
 		}
 	}
 
@@ -95,7 +101,10 @@ class UserController {
 			res.status(200).json({ message: "User updated successfully", user });
 		} catch (error) {
 			console.error("Failed to update User:", error);
-			res.status(500).json({ error: "Failed to update User" });
+			res.status(500).json({
+                error: error,
+                errMsg: "Something went wrong trying to update the data" 
+            })
 		}
 	}
 
@@ -114,7 +123,10 @@ class UserController {
 			res.status(200).json({ message: "User deleted successfully" });
 		} catch (error) {
 			console.error("Failed to delete user:", error);
-			res.status(500).json({ error: "Failed to delete user" });
+			res.status(500).json({
+                error: error,
+                errMsg: "Something went wrong trying to update the data" 
+            })
 		}
 	}
 
