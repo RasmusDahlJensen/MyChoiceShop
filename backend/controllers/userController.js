@@ -148,13 +148,16 @@ class UserController {
 	}
 
 	generateToken(user) {
+		// Create a payload containing user information to be encoded in the token
 		const payload = {
 			id: user.id,
 			username: user.username,
 			email: user.email,
 		};
 
+		// Sign the payload using the JWT secret key and set an expiration time of 1 hour
 		const token = jwt.sign(payload, process.env.JWTKEY, { expiresIn: "1h" });
+
 		return token;
 	}
 }
