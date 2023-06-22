@@ -1,10 +1,13 @@
 import dotenv from "dotenv";
 import { initRouter } from "./routes/init.sequelize.js";
 import express from "express";
+
+//routers
 import ProductRouter from "./routes/productRoutes.js";
 import CategoryRouter from "./routes/categoryRoutes.js";
 import ReviewRouter from "./routes/reviewRouter.js";
 import UserRouter from "./routes/userRoutes.js";
+import brandRouter from "./routes/brandRoutes.js";
 
 dotenv.config();
 
@@ -32,3 +35,4 @@ app.use("/api/", initRouter);
 app.use("/api/", CategoryRouter);
 app.use("/api/", ReviewRouter);
 app.use("/api", UserRouter);
+app.use("/api", brandRouter)
