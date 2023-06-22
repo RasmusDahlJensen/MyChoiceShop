@@ -1,8 +1,12 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //models
 import { UserModel } from "../models/userModel.js";
 import { ReviewModel } from "../models/reviewModel.js";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 UserModel.hasMany(ReviewModel);
 ReviewModel.belongsTo(UserModel);
@@ -112,6 +116,46 @@ class UserController {
 			console.error("Failed to delete user:", error);
 			res.status(500).json({ error: "Failed to delete user" });
 		}
+	}
+
+	async login(req, res) {
+		try {
+			const { email, password } = req.body;
+
+			// Find the user by email
+			const user = await UserModel.findOne({ where: { email } });
+			if (!user) {
+				return res.status(404).json({ error: "User not found" });
+			}
+
+			// Compare the provided password with the stored hashed password
+			const isMatch = await bcrypt.compare(password, user.password);
+			if (!isMatch) {
+				return res.status(401).json({ error: "Invalid email or password" });
+			}
+
+			// Generate a JWT token
+			const token = jwt.sign({ userId: user.id }, process.env.JWTKEY, {
+				expiresIn: "1h",
+			});
+
+			// Return user information along with the token
+			res.status(200).json({ token, user });
+		} catch (error) {
+			console.error("Login error:", error);
+			res.status(500).json({ error: "Failed to log in" });
+		}
+	}
+
+	generateToken(user) {
+		const payload = {
+			id: user.id,
+			username: user.username,
+			email: user.email,
+		};
+
+		const token = jwt.sign(payload, process.env.JWTKEY, { expiresIn: "1h" });
+		return token;
 	}
 }
 

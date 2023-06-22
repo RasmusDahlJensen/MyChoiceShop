@@ -1,7 +1,21 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/db.sequelize.js";
 
-class UserModel extends Model {}
+class UserModel extends Model {
+	static async findByCredentials(email, password) {
+		const user = await UserModel.findOne({ where: { email } });
+		if (!user) {
+			throw new Error("Invalid email or password");
+		}
+
+		const isMatch = await bcrypt.compare(password, user.password);
+		if (!isMatch) {
+			throw new Error("Invalid email or password");
+		}
+
+		return user;
+	}
+}
 
 UserModel.init(
 	{
