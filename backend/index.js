@@ -28,7 +28,7 @@ app.use(
 
 // Register UserRouter for handling user-related routes
 app.use("/api/", ProductRouter);
-app.use("/api/", initRouter)
-app.use("/api/", CategoryRouter)
-app.use("/api/", ReviewRouter)
-app.use("api", UserRouter)
+app.use("/api/", initRouter);
+app.use("/api/", CategoryRouter);
+app.use("/api/", ReviewRouter);
+app.use("/api", UserRouter);

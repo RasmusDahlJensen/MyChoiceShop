@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 import { UserModel } from "../models/userModel.js";
 import { ReviewModel } from "../models/reviewModel.js";
 
-UserModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(UserModel)
+UserModel.hasMany(ReviewModel);
+ReviewModel.belongsTo(UserModel);
 
 class UserController {
 	constructor() {
@@ -46,7 +46,7 @@ class UserController {
 		try {
 			const users = await UserModel.findAll({
 				attributes: ["id", "username", "firstname", "lastname", "address"],
-				include: ReviewModel
+				include: ReviewModel,
 			});
 			res.status(200).json(users);
 		} catch (error) {
@@ -61,26 +61,56 @@ class UserController {
 			const { username, email, firstname, lastname, address, password } =
 				req.body;
 
-			const User = await UserModel.findByPk(UserId);
+			const user = await UserModel.findByPk(UserId);
 
-			if (!User) {
+			if (!user) {
 				return res.status(404).json({ error: "User not found" });
 			}
 
-			await User.update({
-				username,
-				email,
-				firstname,
-				lastname,
-				address,
-				password,
-			});
+			if (password) {
+				const hashedPassword = await bcrypt.hash(password, 10);
+				await user.update({
+					username,
+					email,
+					firstname,
+					lastname,
+					address,
+					password: hashedPassword,
+				});
+			} else {
+				await user.update({
+					username,
+					email,
+					firstname,
+					lastname,
+					address,
+				});
+			}
 
-			console.log("User updated:", User.toJSON());
-			res.status(200).json({ message: "User updated successfully", User });
+			console.log("User updated:", user.toJSON());
+			res.status(200).json({ message: "User updated successfully", user });
 		} catch (error) {
 			console.error("Failed to update User:", error);
 			res.status(500).json({ error: "Failed to update User" });
+		}
+	}
+
+	async delete(req, res) {
+		try {
+			const userId = req.params.id;
+			const user = await UserModel.findByPk(userId);
+
+			if (!user) {
+				return res.status(404).json({ error: "User not found" });
+			}
+
+			await user.destroy();
+
+			console.log("User deleted:", user.toJSON());
+			res.status(200).json({ message: "User deleted successfully" });
+		} catch (error) {
+			console.error("Failed to delete user:", error);
+			res.status(500).json({ error: "Failed to delete user" });
 		}
 	}
 }
