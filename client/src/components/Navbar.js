@@ -17,7 +17,9 @@ export default function Navbar() {
     <nav className={styles.navbar}>
         <div className={styles.navContainer}>
             {/* logo */}
-        <h1>MyChoiceShop</h1>
+        <Link to="/" className={styles.logo}>
+            <span>MyChoiceShop</span>
+        </Link>
 
        <div className={styles.icons}>
             {/* login and menu icon */}
@@ -50,6 +52,21 @@ export default function Navbar() {
                 <li>
                     <Link to="/">
                         Kategori #2
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/">
+                        Kategori #3
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/">
+                        Kategori #4
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/">
+                        Kategori #5
                     </Link>
                 </li>
             </ul>

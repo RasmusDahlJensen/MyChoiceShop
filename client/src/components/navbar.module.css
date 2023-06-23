@@ -6,11 +6,11 @@
     position: sticky;
     top: 0;
 
-    background-color: black;
+    background-color: #262624;
 }
 .navContainer{
     max-width: 1080px;
-    padding: 0.5rem 2rem;
+    padding: 1.56rem 2rem;
     width: 100%;
 
     display: flex;
@@ -21,10 +21,18 @@
     color: #fafafa;
 }
 
+.logo{
+    font-size: 1.8rem;
+    color: #fafafa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 .icons{
     display: flex;
     gap: 1rem;
     font-size: 1.6rem;
+    user-select: none;
 }
 .navContainer ul{
     position: absolute;
@@ -40,7 +48,7 @@
     max-width: 400px;
     width: 100%;
 
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(38, 38, 36, 0.9);
     
     list-style-type: none;
     text-align: left;
@@ -51,8 +59,9 @@
     text-decoration: none;
     font-size: 20px;
 }
+
 /* hover effects */
-.navContainer ul li a:hover, .icons svg:hover{
+.navContainer ul li a:hover, .icons svg:hover, .logo:hover{
     color: #DAA520;
     transition: color 0.2s ;
 }
