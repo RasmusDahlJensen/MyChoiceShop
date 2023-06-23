@@ -51,3 +51,8 @@
     text-decoration: none;
     font-size: 20px;
 }
+/* hover effects */
+.navContainer ul li a:hover, .icons svg:hover{
+    color: #DAA520;
+    transition: color 0.2s ;
+}
