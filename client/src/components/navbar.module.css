@@ -2,17 +2,23 @@
     width: 100%;
     display: flex;
     justify-content: center;
+
+    position: absolute;
+    top: 0;
+
     background-color: black;
 }
 .navContainer{
     max-width: 1080px;
+    padding: 0.5rem 2rem;
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 2rem;
     position: relative;
+    
     color: #fafafa;
-    width: 100%;
 }
 
 .icons{
