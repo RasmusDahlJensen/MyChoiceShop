@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -6,7 +5,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 //Pages
-import HomePage from './components/Homepage';
+import HomePage from './pages/Homepage';
+import Category from './pages/Category';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
@@ -17,7 +18,15 @@ function App() {
           <Route 
           exact 
           path='/'
-          element={<HomePage/>}
+          element={<HomePage />}
+          />
+          <Route 
+          path='/category/:id'
+          element={<Category />}
+          />
+          <Route 
+          path='/product/:id'
+          element={<ProductDetails />}
           />
         </Routes>
       </BrowserRouter>

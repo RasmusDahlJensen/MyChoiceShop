@@ -1,4 +1,8 @@
 import { CategoryModel } from "../models/categoryModel.js"
+import { ProductModel } from "../models/productModel.js";
+
+CategoryModel.hasMany(ProductModel);
+ProductModel.belongsTo(CategoryModel);
 
 class CategoryController {
     constructor(){
@@ -23,7 +27,8 @@ class CategoryController {
     create = async (req, res) => {
         // get name from req
         let {name} = req.body
-    
+        
+        console.log(name);
         //clean name up
         name = name.toLowerCase().trim()
     

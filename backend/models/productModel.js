@@ -15,9 +15,6 @@ ProductModel.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		brand: {
-			type: DataTypes.STRING,
-		},
 		category_id: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
@@ -34,17 +31,9 @@ ProductModel.init(
 			type: DataTypes.TEXT,
 			allowNull: true,
 		},
-		rating: {
-			type: DataTypes.INTEGER,
-			allowNull: true,
-		},
 		quantity: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-		},
-		review: {
-			type: DataTypes.INTEGER,
-			allowNull: true,
 		},
 	},
 	{

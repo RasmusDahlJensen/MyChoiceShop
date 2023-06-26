@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Link} from "react-router-dom"
+import { useState } from 'react'
+import {Link,} from "react-router-dom"
 
 //icons
 import {BiLogIn} from "react-icons/bi"
@@ -40,32 +40,50 @@ export default function Navbar() {
         {showMenu && (
             <ul>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Forside
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/category/1"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Kategori #1
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/category/2"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Kategori #2
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/category/3"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Kategori #3
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/category/4"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Kategori #4
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link 
+                    to="/category/5"
+                    onClick={() => setShowMenu(false)}
+                    >
                         Kategori #5
                     </Link>
                 </li>

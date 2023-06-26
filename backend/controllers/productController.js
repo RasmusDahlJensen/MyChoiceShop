@@ -1,4 +1,15 @@
+import { CategoryModel } from "../models/categoryModel.js";
 import { ProductModel } from "../models/productModel.js";
+import {ReviewModel} from "../models/reviewModel.js"
+import {BrandModel} from "../models/brandModel.js"
+
+ProductModel.hasMany(ReviewModel)
+ReviewModel.hasOne(ProductModel)
+ProductModel.hasOne(CategoryModel)
+CategoryModel.hasMany(ProductModel)
+ProductModel.hasOne(BrandModel)
+BrandModel.hasMany(ProductModel)
+
 
 class ProductController {
 	constructor() {
@@ -33,10 +44,10 @@ class ProductController {
 			res
 				.status(201)
 				.json({ message: "Product created successfully", product });
-		} catch (error) {
+		} catch(error) {
 			console.error("Failed to create product:", error);
 			res.status(500).json({
-                error: err,
+                error: error,
                 errMsg: "Something went wrong trying to insert the data" 
             })
 		}
@@ -49,7 +60,7 @@ class ProductController {
 		} catch (error) {
 			console.error("Failed to retrieve products:", error);
 			res.status(500).json({
-                error: err,
+                error: error,
                 errMsg: "Something went wrong trying to fetch the data" 
             })
 		}
@@ -93,7 +104,7 @@ class ProductController {
 				.status(200)
 				.json({ message: "Product updated successfully", product });
 		} catch(err) {
-			console.error("Failed to update product:", error);
+			console.error("Failed to update product:", err);
 			res.status(500).json({
                 error: err,
                 errMsg: "Something went wrong trying to update the data" 
@@ -114,10 +125,10 @@ class ProductController {
 
 			console.log("Product deleted:", product.toJSON());
 			res.status(200).json({ message: "Product deleted successfully" });
-		} catch (error) {
+		} catch(error) {
 			console.error("Failed to delete product:", error);
 			res.status(500).json({
-                error: err,
+                error: error,
                 errMsg: "Something went wrong trying to delete the data" 
             })
 		}

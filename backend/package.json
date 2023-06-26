@@ -10,5 +10,8 @@
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
     "sequelize": "^6.32.1"
+  },
+  "scripts": {
+    "start": "nodemon index"
   }
 }

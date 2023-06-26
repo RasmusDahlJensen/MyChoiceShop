@@ -1,4 +1,8 @@
 import { ReviewModel } from "../models/reviewModel.js";
+import { UserModel } from "../models/userModel.js"
+
+ReviewModel.hasOne(UserModel)
+UserModel.hasMany(ReviewModel)
 
 class ReviewController{
     constructor(){
@@ -9,7 +13,7 @@ class ReviewController{
         try{
             const result = await ReviewModel.findAll()
             res.json(result)
-        } catch{
+        } catch(err){
             res.json({
                 error: err,
                 errMsg: "Something went wrong trying to fetch the data" 
@@ -49,7 +53,7 @@ class ReviewController{
             })
             
             res.json({msg: "Sucessfully Deleted"})
-        } catch{
+        } catch(err){
             res.json({
                 error: err,
                 errMsg: "Something went wrong trying to delete the data" 

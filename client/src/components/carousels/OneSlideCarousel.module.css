@@ -1,0 +1,49 @@
+.carousel{
+    display: flex;
+    gap: 2rem;
+    overflow: hidden;
+    position: relative;
+    scroll-behavior: smooth;
+    margin-bottom: 4rem;
+    position: relative;
+    padding: 0 2rem;
+    user-select: none;
+}
+.carousel img{
+    width: 100%;
+    aspect-ratio: 12/9;
+    object-fit: cover;
+}
+.carouselContainer .left, .carouselContainer .right{
+    font-size: 2rem;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+.carouselContainer .left.active:hover, .carouselContainer .right.active:hover{
+    color: #DAA520;
+}
+.right{
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.left{
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav{
+    display: flex;
+    place-content: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+}
+.nav svg:hover{
+    opacity: 0.5;
+}
+.picked{
+    opacity: 0.5;
+}
