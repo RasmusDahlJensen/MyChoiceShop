@@ -20,7 +20,11 @@ ReviewModel.init({
     },
     rating: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
+    },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     comment: {
         type: DataTypes.TEXT,

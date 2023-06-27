@@ -11,13 +11,9 @@ function Category() {
     console.log(data);
   return (
     <div>
-      {loading && <p>Loading...</p>}
-        {data && (
-          <>
-            <h1 style={{padding: "0 20px"}}>{data.name}</h1>
-            {data && <Products data={data.products}/>}
-          </>
-        )}
+
+      <h1 style={{padding: "0 20px"}}>{data.name}</h1>
+      <Products data={data.products} loading={loading}/>
       {error && <p>Something went wrong, try and refresh the page</p>}
     </div>
   )

@@ -3,20 +3,49 @@ import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 
 //styles
 import styles from "./ReviewForm.module.css"
+import { useFetch } from '../../hooks/useFetch'
 
 function ReviewForm({productId}) {
     const [title, setTitle] = useState("")
     const [rating, setRating] = useState(1)
     const [review, setReview] = useState("")
 
-    const handleForm = (e) => {
+    
+
+    const handleForm = async (e) => {
         e.preventDefault()
         console.log({
-            id: parseInt(productId),
-            title,
+            user_id: "9b7dd2a9-1bea-4fd7-9269-7f1b31310481",
+            product_id: parseInt(productId),
             rating,
-            review,
+            comment: review,
+            title,
         });
+
+        try{
+            const result = await fetch("http://localhost:4000/api/review", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user_id: "9b7dd2a9-1bea-4fd7-9269-7f1b31310481",
+                    product_id: parseInt(productId),
+                    rating,
+                    comment: review,
+                    title,
+                })
+            }) 
+
+            setRating(1)
+            setReview("")
+            setTitle("")
+
+            console.log(result);
+
+        }catch(err){
+            console.log(err);
+        }
     }
 
   return (

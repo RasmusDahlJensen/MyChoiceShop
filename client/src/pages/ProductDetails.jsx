@@ -1,43 +1,70 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
-
-import styles from "./ProductDetail.module.css"
-import ReviewForm from '../components/forms/ReviewForm'
 import { useParams } from 'react-router-dom'
-import Review from '../components/Review'
 import { useFetch } from '../hooks/useFetch'
 import { calculateReviews } from '../hooks/useRating'
 
+//styles
+import styles from "./ProductDetail.module.css"
+
+//components
+import ReviewForm from '../components/forms/ReviewForm'
+import SkeletonProductDetails from '../skeletons/SkeletonProductDetails'
+import Review from '../components/Review'
+
+
 function Product() {
   const {id} = useParams()
-  const {data, error, loading} = useFetch(`/api/product/${id}`)
-  const {data: reviewData, error: reviewError, loading: reviewLoading} = useFetch(`/api/reviews/${id}`)
+
+  const [ratingNumber, setRatingNumber] = useState(null)
+
+  const { data, error, loading } = useFetch(`/api/product/${id}`)
+  const {data: reviewData } = useFetch(`/api/reviews/${id}`)
+
+  useEffect(() => {
+    if(reviewData && reviewData.length){
+      setRatingNumber(calculateReviews(reviewData))
+    } 
+
+  }, [reviewData])
 
   if(loading){
-    return <p>Loading</p>
+    return <SkeletonProductDetails />
   }
 
   if(error){
     return <p>Something went wrong, try and refresh the page.</p>
   }
-
+  
+  
   return (
   <div className="container">
     {data && <main className={styles.productDetails}>
       <div className={styles.product}>
-
         <img src={data.image} alt="Product" />
-
         <div className={styles.aside}>
           <h1>{data.product_name}</h1>
           <p className={styles.rating}>
-            <BsStarFill/>
-            <BsStarFill/>
-            <BsStarHalf/>
-            <BsStar/>
-            <BsStar/>
+            {reviewData && reviewData.length && reviewData ? (
+              <>
+                <BsStarFill/>
+                <BsStarFill/>
+                <BsStar/>
+                <BsStar/>
+                <BsStar/>
+              
+              </>
+            ) : (
+              <>
+                <BsStarFill/>
+                <BsStarFill/>
+                <BsStarHalf/>
+                <BsStar/>
+                <BsStar/>
+              </>
+            )}
             <strong>
-              {reviewData && reviewData.length && reviewData ? calculateReviews(reviewData): "0"}
+              {ratingNumber ? (ratingNumber) : "0"}
               {}
             </strong>
             <span>

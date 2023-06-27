@@ -24,7 +24,7 @@ class ReviewController{
     }
 
     add = async (req, res) => {
-        const {user_id, product_id, rating, comment} = req.body
+        const {user_id, product_id, rating, comment, title} = req.body
         console.log(user_id, product_id, rating, comment);
         try{
             const result =  await ReviewModel.create({
@@ -32,6 +32,7 @@ class ReviewController{
                 product_id,
                 rating,
                 comment,
+                title,
             })
             res.json(result)
         } catch(err){

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/Homepage';
 import Category from './pages/Category';
 import ProductDetails from './pages/ProductDetails';
+import "./skeletons/Skeleton.css"
 
 function App() {
   return (

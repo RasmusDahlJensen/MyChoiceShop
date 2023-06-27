@@ -4,11 +4,10 @@ export const calculateReviews = (reviewData) => {
     let rate = null;
 
     reviewData.map(({rating, n_rating}) => {
-    console.log(rating, n_rating);
-        rate += rating;
+        rate += rating * n_rating;
         numberOfRatings += n_rating;
     })
     rate = rate / numberOfRatings
     
-    return rate
+    return rate.toFixed(1)
 }

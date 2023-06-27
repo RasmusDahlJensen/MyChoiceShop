@@ -4,13 +4,12 @@ import Products from '../components/Products'
 import {useFetch}  from "../hooks/useFetch"
 
 function HomePage() {
-  const {loading, data, error} = useFetch("/api/products")
+  const {loading, data, error} = useFetch("http://localhost:4000/api/products")
   return (
     <div className="container">
       <div>
           <Highlights />
-          {loading && <p>Loading...</p>}
-          {data && <Products data={data}/>}
+          <Products data={data} loading={loading}/>
       </div>
     </div>
   )
