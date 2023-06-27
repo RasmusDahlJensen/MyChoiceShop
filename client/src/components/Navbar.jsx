@@ -29,12 +29,12 @@ export default function Navbar() {
 
 			if (!response.ok) {
 				const errorData = await response.json();
-				console.log("Error Data:", errorData);
+				// console.log("Error Data:", errorData);
 				throw new Error(errorData.error);
 			}
 
 			const data = await response.json();
-			console.log("Response Data:", data);
+			// console.log("Response Data:", data);
 			const token = data.token;
 
 			// Set the token in session storage
