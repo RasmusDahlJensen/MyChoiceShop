@@ -36,7 +36,10 @@ function Product() {
             <BsStarHalf/>
             <BsStar/>
             <BsStar/>
-            <strong>{reviewData ? calculateReviews(reviewData): "0"}</strong>
+            <strong>
+              {reviewData && reviewData.length && reviewData ? calculateReviews(reviewData): "0"}
+              {}
+            </strong>
             <span>
               ({data.reviews.length} anmeldelser)
             </span>
