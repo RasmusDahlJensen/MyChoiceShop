@@ -10,8 +10,8 @@
     user-select: none;
 }
 .carousel img{
-    width: 100%;
-    aspect-ratio: 12/9;
+    width: 107%;
+    aspect-ratio: 16/9;
     object-fit: cover;
 }
 .carouselContainer .left, .carouselContainer .right{
