@@ -30,6 +30,12 @@ CategoryRouter.delete("/category/:id", (req, res) => {
 
     return category.delete(req, res)
 })
+//find products by category id
+CategoryRouter.get("/category/:id", (req, res) => {
+    const category = new CategoryController()
+
+    return category.findProducts(req, res)
+})
 //#### category routes end here ####
 
 export default CategoryRouter;

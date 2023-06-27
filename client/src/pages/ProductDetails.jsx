@@ -5,7 +5,7 @@ import styles from "./ProductDetail.module.css"
 import ReviewForm from '../components/forms/ReviewForm'
 import { useParams } from 'react-router-dom'
 import Review from '../components/Review'
-import { useFetch } from '../components/hooks/useFetch'
+import { useFetch } from '../hooks/useFetch'
 
 function Product() {
   const {id} = useParams()

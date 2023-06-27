@@ -16,6 +16,23 @@ class ProductController {
 		console.log("Product Controller initialized");
 	}
 
+	findByCategory = async (req, res) => {
+        const {id} = req.params
+        try{
+            await BrandModel.findOne({
+				where: {
+					id
+				}
+			})
+        }catch(err){
+			console.log(err);
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
+        }
+    }
+
 	async create(req, res) {
 		try {
 			const {

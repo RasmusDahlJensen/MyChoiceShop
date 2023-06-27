@@ -9,4 +9,5 @@ brandRouter.get("/brands", (req, res) => {
     return brand.findAll(req, res)
 })
 
+
 export default brandRouter

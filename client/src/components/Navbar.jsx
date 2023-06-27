@@ -52,7 +52,7 @@ export default function Navbar() {
                     to="/category/1"
                     onClick={() => setShowMenu(false)}
                     >
-                        Kategori #1
+                        Laptops
                     </Link>
                 </li>
                 <li>

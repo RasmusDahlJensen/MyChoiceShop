@@ -1,3 +1,4 @@
+import { BrandModel } from "../models/brandModel.js";
 import { CategoryModel } from "../models/categoryModel.js"
 import { ProductModel } from "../models/productModel.js";
 
@@ -90,6 +91,28 @@ class CategoryController {
 
         return true
     }
+
+    findProducts = async (req, res) => {
+        const {id} = req.params
+        try{
+            const result = await CategoryModel.findOne({
+                where: {
+                    id
+                },
+                include: ProductModel
+            })
+        
+            res.json(result)
+        }catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
+        }
+        
+        return true
+    }
+    
 
 }
 

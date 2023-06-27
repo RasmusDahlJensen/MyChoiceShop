@@ -29,4 +29,9 @@ ProductRouter.get("/product/:id", (req, res) => {
 	controller.Single(req, res)
 })
 
+ProductRouter.get("/products/category/:id", (req, res) => {
+	
+	controller.findByCategory(req, res)
+})
+
 export default ProductRouter;
