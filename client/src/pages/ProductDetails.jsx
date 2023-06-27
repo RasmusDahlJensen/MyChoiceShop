@@ -11,6 +11,10 @@ function Product() {
   const {id} = useParams()
   const {data, error, loading} = useFetch(`/api/product/${id}`)
 
+  const calculateReviews = (reviews) => {
+    let rating = 0 
+  }
+
   if(loading){
     return <p>Loading</p>
   }
