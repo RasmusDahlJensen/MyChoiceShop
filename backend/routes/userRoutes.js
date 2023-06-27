@@ -36,6 +36,7 @@ UserRouter.post("/users/login", async (req, res) => {
 //Test if login is successful and token is valid
 UserRouter.get("/users/test", authenticateToken, (req, res) => {
 	res.status(200).json({ message: "Authenticated" });
+	console.log("You're logged in!");
 });
 
 export default UserRouter;
