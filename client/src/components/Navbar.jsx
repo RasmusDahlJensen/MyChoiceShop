@@ -35,7 +35,7 @@ export default function Navbar() {
 
 			const data = await response.json();
 			console.log("Response Data:", data);
-			const token = data.accessToken;
+			const token = data.token;
 
 			// Set the token in session storage
 			sessionStorage.setItem("token", token);
