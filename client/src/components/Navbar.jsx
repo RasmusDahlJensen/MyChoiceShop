@@ -89,6 +89,7 @@ export default function Navbar() {
 							</div>
 							<button
 								type="submit"
+								className={styles.loginButton}
 								onClick={(e) => {
 									e.preventDefault();
 									setShowLogin(false);

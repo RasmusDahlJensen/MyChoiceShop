@@ -137,8 +137,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: fit-content; /* Set the width to fit its content */
-    margin: 0 auto; /* Center the button horizontally within its container */
+    width: fit-content;
+    margin: 0 auto;
 }
 
 
