@@ -1,3 +1,4 @@
+import { sequelize } from "../config/db.sequelize.js";
 import { ReviewModel } from "../models/reviewModel.js";
 import { UserModel } from "../models/userModel.js"
 
@@ -72,6 +73,29 @@ class ReviewController{
             })
             res.json(result)
         }catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
+        }
+    }
+
+    findAndCount = async (req, res) => {
+        const id = req.params.id;
+        try{
+            const result = await ReviewModel.findAll({
+                where: {
+                    product_id: id
+                },
+                attributes: [
+                    "rating",
+                    [sequelize.fn('COUNT', sequelize.col('rating')), 'n_rating']
+                ],
+                group: ["review.rating"],
+            })
+            res.json(result)
+        }catch(err){
+            console.log(err);
             res.json({
                 error: err,
                 errMsg: "Something went wrong trying to fetch the data" 

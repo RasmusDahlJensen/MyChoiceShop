@@ -5,7 +5,6 @@ import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import styles from "./Review.module.css"
 
 function Review({data}) {
-  console.log(data);
 
   const formatTime = (time) => {
     let now = new Date(time).toLocaleString("da-DK", {

@@ -27,4 +27,10 @@ ReviewRouter.get("/review/:id", (req, res) => {
     return review.findOne(req, res)
 })
 
+ReviewRouter.get("/reviews/:id", (req, res) => {
+    const review = new ReviewController()
+
+    return review.findAndCount(req, res)
+})
+
 export default ReviewRouter

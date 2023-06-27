@@ -6,14 +6,12 @@ import ReviewForm from '../components/forms/ReviewForm'
 import { useParams } from 'react-router-dom'
 import Review from '../components/Review'
 import { useFetch } from '../hooks/useFetch'
+import { calculateReviews } from '../hooks/useRating'
 
 function Product() {
   const {id} = useParams()
   const {data, error, loading} = useFetch(`/api/product/${id}`)
-
-  const calculateReviews = (reviews) => {
-    let rating = 0 
-  }
+  const {data: reviewData, error: reviewError, loading: reviewLoading} = useFetch(`/api/reviews/${id}`)
 
   if(loading){
     return <p>Loading</p>
@@ -23,7 +21,6 @@ function Product() {
     return <p>Something went wrong, try and refresh the page.</p>
   }
 
-  console.log(data);
   return (
   <div className="container">
     {data && <main className={styles.productDetails}>
@@ -39,7 +36,7 @@ function Product() {
             <BsStarHalf/>
             <BsStar/>
             <BsStar/>
-            <strong>4.7</strong>
+            <strong>{reviewData ? calculateReviews(reviewData): "0"}</strong>
             <span>
               ({data.reviews.length} anmeldelser)
             </span>
