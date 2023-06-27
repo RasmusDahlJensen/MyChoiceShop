@@ -6,10 +6,12 @@ import {useFetch}  from "../hooks/useFetch"
 function HomePage() {
   const {loading, data, error} = useFetch("/api/products")
   return (
-    <div>
-        <Highlights />
-        {loading && <p>Loading...</p>}
-        {data && <Products data={data}/>}
+    <div className="container">
+      <div>
+          <Highlights />
+          {loading && <p>Loading...</p>}
+          {data && <Products data={data}/>}
+      </div>
     </div>
   )
 }

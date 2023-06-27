@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 //icons
 import { BiLogIn } from "react-icons/bi";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
 
 //styles
 import styles from "./navbar.module.css";
@@ -11,6 +11,7 @@ import styles from "./navbar.module.css";
 export default function Navbar() {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showLogin, setShowLogin] = useState(false);
+	const [showCart, setShowCart] = useState(false);
 
 	return (
 		<nav className={styles.navbar}>
@@ -21,12 +22,37 @@ export default function Navbar() {
 				</Link>
 
 				<div className={styles.icons}>
-					{/* login and menu icon */}
-					{!showLogin && <BiLogIn onClick={() => setShowLogin(true)} />}
+					{/* login, menu and cart icon */}
+					{!showLogin && <BiLogIn onClick={() => {
+                        if(showMenu || showCart){
+                            setShowMenu(false)
+                            setShowCart(false)
+                        }
+                        setShowLogin(true)
+                    }} />}
 					{showLogin && <BiLogIn onClick={() => setShowLogin(false)} />}
 
-					{!showMenu && <AiOutlineMenu onClick={() => setShowMenu(true)} />}
+                    {!showCart && <AiOutlineShoppingCart onClick={() => {
+                        if(setShowMenu || showLogin){
+                            setShowLogin(false)
+                            setShowMenu(false)
+                        }
+                        setShowCart(true)
+                    }}/>}
+                    {showCart && <AiOutlineShoppingCart onClick={() => {
+                        setShowCart(false)
+                    }}/>}
+
+					{!showMenu && <AiOutlineMenu onClick={() => {
+                        if(showLogin || showCart){
+                            setShowLogin(false)
+                            setShowCart(false)
+                        }
+                        setShowMenu(true)
+                        }} />}
 					{showMenu && <AiOutlineClose onClick={() => setShowMenu(false)} />}
+                        
+
 				</div>
 
 				{/* menu */}
@@ -100,6 +126,15 @@ export default function Navbar() {
 						</form>
 					</div>
 				)}
+
+                {/* cart */}
+                {showCart && (
+                <div className={styles.cart}>
+                    
+                </div>
+                )}
+
+
 			</div>
 		</nav>
 	);
