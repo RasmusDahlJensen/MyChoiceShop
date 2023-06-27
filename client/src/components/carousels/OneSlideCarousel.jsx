@@ -27,6 +27,8 @@ function OneSlideCarousel() {
         className={`${styles.left} ${styles.active}`}
         onClick={() => {
             if(width && pages !== 0){
+                containerDimension = width.current.getBoundingClientRect();
+                containerWidth = containerDimension.width;
                 width.current.scrollLeft -= containerWidth;
                 setPages(pages - 1)
             }
@@ -47,6 +49,8 @@ function OneSlideCarousel() {
         className={`${styles.right} ${styles.active}`}
         onClick={() => {
             if(pages !== highlightsSlides.length - 1){
+                containerDimension = width.current.getBoundingClientRect();
+                containerWidth = containerDimension.width;
                 width.current.scrollLeft += containerWidth;
                 setPages(pages + 1)
             }
