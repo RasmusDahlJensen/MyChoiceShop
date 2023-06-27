@@ -37,7 +37,7 @@ function Product() {
             <BsStar/>
             <strong>4.7</strong>
             <span>
-              (211 anmeldelser)
+              ({data.reviews.length} anmeldelser)
             </span>
           </p>
           <p>
