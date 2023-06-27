@@ -164,7 +164,12 @@ export default function Navbar() {
                 {/* cart */}
                 {showCart && (
                 <div className={styles.cart}>
-                    
+                    <div className={styles.cartCard}>
+                        <img src="https://images.samsung.com/is/image/samsung/p6pim/hk_en/galaxy-book/feature/hk_en-feature-thin-as-a-smartphone--powerful-as-a-pc-430327739?$FB_TYPE_A_MO_JPG$" alt="img" />
+                        <div className="side">
+                            <h4>Samsung galaxy book</h4>
+                        </div>
+                    </div>
                 </div>
                 )}
 
