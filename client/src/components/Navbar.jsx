@@ -12,6 +12,39 @@ export default function Navbar() {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showLogin, setShowLogin] = useState(false);
 
+	//Login Logic
+	const handleLogin = async () => {
+		try {
+			const formData = new FormData(document.getElementById("loginForm"));
+			const email = formData.get("email");
+			const password = formData.get("password");
+
+			const response = await fetch("http://localhost:4000/api/users/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email, password }),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				console.log("Error Data:", errorData);
+				throw new Error(errorData.error);
+			}
+
+			const data = await response.json();
+			console.log("Response Data:", data);
+			const token = data.accessToken;
+
+			// Set the token in session storage
+			sessionStorage.setItem("token", token);
+		} catch (error) {
+			// Login error handling
+			console.error(error);
+		}
+	};
+
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.navContainer}>
@@ -68,7 +101,7 @@ export default function Navbar() {
 				{/* Login */}
 				{showLogin && (
 					<div className={styles.loginFormContainer}>
-						<form className={styles.loginForm}>
+						<form id="loginForm" className={styles.loginForm}>
 							<div className={styles.formGroup}>
 								<label htmlFor="email">Email</label>
 								<input
@@ -93,6 +126,7 @@ export default function Navbar() {
 								onClick={(e) => {
 									e.preventDefault();
 									setShowLogin(false);
+									handleLogin();
 								}}
 							>
 								Login

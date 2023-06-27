@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { initRouter } from "./routes/init.sequelize.js";
 import express from "express";
+import cors from "cors";
 
 //routers
 import ProductRouter from "./routes/productRoutes.js";
@@ -12,6 +13,9 @@ import brandRouter from "./routes/brandRoutes.js";
 dotenv.config();
 
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Start the server
 app.listen(4000, () => {
@@ -35,4 +39,4 @@ app.use("/api/", initRouter);
 app.use("/api/", CategoryRouter);
 app.use("/api/", ReviewRouter);
 app.use("/api", UserRouter);
-app.use("/api", brandRouter)
+app.use("/api", brandRouter);
