@@ -4,14 +4,14 @@ import styles from "./ProductCard.module.css"
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 
-function ProductCard({showReviews, showMoreButton }) {
-  console.log(showMoreButton);
+function ProductCard({showReviews, showMoreButton, data}) {
+  console.log(data);
   return (
-    <Link to="/product/4" style={{textDecoration: "none", color: "black"}}>
+    <Link to={`/product/${data.id}`} style={{textDecoration: "none", color: "black"}}>
       <article className={styles.card}>
-        <img src="https://files.refurbed.com/ii/macbook-pro-2019-133-tb-1643102071.jpg?t=resize&h=600&w=800" alt="macbook" />
+        <img src={data.image} alt={data.product_name} />
         <div className={styles.text}>
-          <h2>Product #1</h2>
+          <h2>{data.product_name}</h2>
           {showReviews && (
             <p className={styles.rating}>
               <BsStarFill/>
@@ -25,9 +25,9 @@ function ProductCard({showReviews, showMoreButton }) {
               </span>
             </p>
           )}
-          <p>lorem ipsum dolor sit amet...</p>
+          <p>{data.description.slice(0,50)}...</p>
           <span >
-            Kr 399,00 
+            Kr {data.price}
           </span>
           
         </div>

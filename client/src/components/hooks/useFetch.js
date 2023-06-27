@@ -7,7 +7,11 @@ export const useFetch = (url) => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(url)
+		fetch(url, {
+			headers: {
+				"content-type": "application/json"
+			}
+		})
 			.then((response) => response.json())
 			.then(setData)
 			.catch(setError)

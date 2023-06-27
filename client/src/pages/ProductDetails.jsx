@@ -5,19 +5,30 @@ import styles from "./ProductDetail.module.css"
 import ReviewForm from '../components/forms/ReviewForm'
 import { useParams } from 'react-router-dom'
 import Review from '../components/Review'
+import { useFetch } from '../components/hooks/useFetch'
 
 function Product() {
   const {id} = useParams()
+  const {data, error, loading} = useFetch(`/api/product/${id}`)
 
+  if(loading){
+    return <p>Loading</p>
+  }
+
+  if(error){
+    return <p>Something went wrong, try and refresh the page.</p>
+  }
+
+  console.log(data);
   return (
   <div className="container">
-    <main className={styles.productDetails}>
+    {data && <main className={styles.productDetails}>
       <div className={styles.product}>
 
-        <img src="https://files.refurbed.com/ii/macbook-pro-2019-133-tb-1643102071.jpg?t=resize&h=600&w=800" alt="Product" />
+        <img src={data.image} alt="Product" />
 
         <div className={styles.aside}>
-          <h1>MacBook</h1>
+          <h1>{data.product_name}</h1>
           <p className={styles.rating}>
             <BsStarFill/>
             <BsStarFill/>
@@ -30,16 +41,16 @@ function Product() {
             </span>
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae saepe at enim rem maiores expedita unde, accusamus quis dolorum ipsum. Placeat aut doloremque corrupti voluptatibus nostrum amet deserunt ratione dolorum.
+           {data.description}
           </p>
           <div className={styles.pricing}>
-            <h3>Kr 399,0</h3>
+            <h3>Kr {data.price}</h3>
             <div className={styles.order}>
               <button className='btn'>
                 put i kurven
               </button>
               <p className='secondary-btn'>
-                på lager: 4
+                på lager: {data.quantity}
               </p>
             </div>
           </div>
@@ -51,11 +62,11 @@ function Product() {
           <h2>Andmeldelser</h2>
           <ReviewForm productId={id}/>
 
-          <Review />
-          <Review />
-          <Review />
+          {data.reviews.map(review => (
+            <Review data={review}/>
+          ))}
       </div>
-    </main>
+    </main>}
   </div>
   )
 }

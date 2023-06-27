@@ -24,4 +24,9 @@ ProductRouter.delete("/products/delete/:id", async (req, res) => {
 	controller.delete(req, res);
 });
 
+ProductRouter.get("/product/:id", (req, res) => {
+	
+	controller.Single(req, res)
+})
+
 export default ProductRouter;

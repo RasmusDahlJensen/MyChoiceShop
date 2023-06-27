@@ -3,12 +3,13 @@ import ProductCard from './ProductCard'
 
 import styles from "./Products.module.css"
 
-function Products({showMoreButton}) {
-  console.log(showMoreButton);
+function Products({data}) {
+  console.log(data);
   return (
     <section className={styles.products}>
-        <ProductCard />
-        
+        {data && data.map(product => (
+          <ProductCard data={product} key={product.id}/>
+        )) }
     </section>
   )
 }

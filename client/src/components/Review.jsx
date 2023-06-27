@@ -4,12 +4,26 @@ import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 //styles
 import styles from "./Review.module.css"
 
-function Review() {
+function Review({data}) {
+  console.log(data);
+
+  const formatTime = (time) => {
+    let now = new Date(time).toLocaleString("da-DK", {
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+      
+    })
+    // now = now.replaceAll(".", "/")
+
+      return now
+  }
+
   return (
     <div className={styles.review}>
         <h3>Bedste Produkt ever</h3>
         <span>
-            Mr review 16-12-2022
+            Mr review {formatTime(data.createdAt)}
         </span>
         <p className={styles.rating}>
             <BsStarFill/>
@@ -19,7 +33,7 @@ function Review() {
             <BsStar/>
         </p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptate asperiores nostrum voluptatem temporibus. Tempora fugit, ex voluptatibus sapiente, harum facere inventore rem maxime cupiditate atque repellendus quisquam id impedit?
+            {data.comment}
         </p>
     </div>
   )

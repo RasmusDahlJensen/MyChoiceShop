@@ -133,6 +133,24 @@ class ProductController {
             })
 		}
 	}
+
+	async Single(req, res){
+		const id = req.params.id;
+        try{
+            const result = await ProductModel.findOne({
+                where: {
+                    id
+                },
+				include: ReviewModel
+            })
+            res.json(result)
+        }catch(err){
+            res.json({
+                error: err,
+                errMsg: "Something went wrong trying to fetch the data" 
+            })
+        }
+	}
 }
 
 export default ProductController;
