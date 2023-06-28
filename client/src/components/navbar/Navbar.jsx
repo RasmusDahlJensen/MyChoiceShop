@@ -87,7 +87,8 @@ export default function Navbar() {
 									setShowMenu(false);
 									setShowCart(false);
 								}
-								setShowLogin(true);
+								//Toggle the value to hide and show the login form
+								setShowLogin((prevShowLogin) => !prevShowLogin);
 							}}
 						/>
 					)}
