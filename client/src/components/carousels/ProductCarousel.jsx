@@ -28,7 +28,6 @@ function OneSlideCarousel({data = false, title, loading}) {
                 containerDimension = width.current.getBoundingClientRect();
                 containerWidth = containerDimension.width;
                 width.current.scrollLeft -= containerWidth;
-
             }
         }}
         >

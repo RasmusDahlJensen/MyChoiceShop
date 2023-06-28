@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 //icons
 import { BiLogIn } from "react-icons/bi";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
-import Cart from "./Cart";
 
 //styles
 import styles from "./navbar.module.css";
+
+//components
+import Cart from "./Cart";
+import NavbarMenu from "./NavbarMenu";
+import Login from "./Login";
 
 export default function Navbar() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -86,65 +90,16 @@ export default function Navbar() {
                         }} />}
 					{showMenu && <AiOutlineClose onClick={() => setShowMenu(false)} />}
                         
-
 				</div>
 
 				{/* menu  links*/}
 				{showMenu && (
-					<ul>
-						<li>
-							<Link to="/" onClick={() => setShowMenu(false)}>
-								Forside
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/1" onClick={() => setShowMenu(false)}>
-								Laptops
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/2" onClick={() => setShowMenu(false)}>
-								Telefoner
-							</Link>
-						</li>
-					</ul>
+					<NavbarMenu setShowMenu={setShowMenu}/>
 				)}
 
 				{/* Login */}
 				{showLogin && (
-					<div className={styles.loginFormContainer}>
-						<form id="loginForm" className={styles.loginForm}>
-							<div className={styles.formGroup}>
-								<label htmlFor="email">Email</label>
-								<input
-									type="email"
-									id="email"
-									name="email"
-									className={styles.emailInput}
-								/>
-							</div>
-							<div className={styles.formGroup}>
-								<label htmlFor="password">Password</label>
-								<input
-									type="password"
-									id="password"
-									name="password"
-									className={styles.passwordInput}
-								/>
-							</div>
-							<button
-								type="submit"
-								className={styles.loginButton}
-								onClick={(e) => {
-									e.preventDefault();
-									setShowLogin(false);
-									handleLogin();
-								}}
-							>
-								Login
-							</button>
-						</form>
-					</div>
+					<Login handleLogin={handleLogin} setShowLogin={setShowLogin}/>
 				)}
 
                 {/* cart */}
