@@ -5,7 +5,6 @@ function Highlights() {
     
   return (
     <div style={{padding: "20px"}}>
-        <h1>HighLights</h1>
         <OneSlideCarousel />
     </div>
   )
