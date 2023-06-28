@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 //icons
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 import {
 	AiOutlineMenu,
 	AiOutlineClose,
@@ -16,11 +16,13 @@ import styles from "./navbar.module.css";
 import Cart from "./Cart";
 import NavbarMenu from "./NavbarMenu";
 import Login from "./Login";
+import { isAuthenticated } from "../../hooks/useAuthentication";
 
 export default function Navbar() {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showLogin, setShowLogin] = useState(false);
 	const [showCart, setShowCart] = useState(false);
+	const [authenticated, setAuthenticated] = useState(isAuthenticated());
 
 	//Login Logic
 	const handleLogin = async () => {
@@ -51,10 +53,19 @@ export default function Navbar() {
 			// Set the token in session storage
 			sessionStorage.setItem("token", token);
 			sessionStorage.setItem("userId", user.id);
+			setAuthenticated(true);
 		} catch (error) {
 			// Login error handling
 			console.error(error);
 		}
+	};
+
+	// Logout Logic
+	const handleLogout = () => {
+		// Clear the token from session storage or perform any other necessary cleanup
+		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("userId");
+		setAuthenticated(false);
 	};
 
 	return (
@@ -67,7 +78,9 @@ export default function Navbar() {
 
 				<div className={styles.icons}>
 					{/* login, menu and cart icon */}
-					{!showLogin && (
+					{authenticated ? (
+						<BiLogOut onClick={handleLogout} />
+					) : (
 						<BiLogIn
 							onClick={() => {
 								if (showMenu || showCart) {
@@ -78,7 +91,6 @@ export default function Navbar() {
 							}}
 						/>
 					)}
-					{showLogin && <BiLogIn onClick={() => setShowLogin(false)} />}
 
 					{!showCart && (
 						<AiOutlineShoppingCart
