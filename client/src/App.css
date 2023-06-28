@@ -25,6 +25,10 @@ body{
   text-decoration: none;
   text-transform: capitalize;
   font-weight: 600;
+  transition: opacity 0.2s ease-in-out;
+}
+.btn:hover{
+  opacity: 0.75;
 }
 .secondary-btn{
   padding: 8px 20px;

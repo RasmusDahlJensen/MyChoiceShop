@@ -16,12 +16,6 @@ function OneSlideCarousel({data = false, title, loading}) {
         containerDimension = width.current.getBoundingClientRect();
         containerWidth = containerDimension.width;
     }, [width])
-    
-    window.onresize = function(event) {
-        console.log(width.current);
-        containerDimension = width.current.getBoundingClientRect().width;
-        containerWidth = containerDimension.width;
-    };
 
   return (
     <div className={styles.carouselContainer}>
