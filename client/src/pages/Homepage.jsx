@@ -5,7 +5,8 @@ import {useFetch}  from "../hooks/useFetch"
 import ProductCarousel from '../components/carousels/ProductCarousel'
 
 function HomePage() {
-  const {loading, data, error} = useFetch("http://localhost:4000/api/products")
+  const {loading, data, error} = useFetch("http://localhost:4000/api/products/?limit=5")
+  console.log(error);
   const {loading: loadingCategories, data: dataCategories, error: errorCategories} = useFetch("http://localhost:4000/api/category")
 
   console.log(dataCategories);

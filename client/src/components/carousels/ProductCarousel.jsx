@@ -11,7 +11,6 @@ function OneSlideCarousel({data = false, title, loading}) {
     let containerWidth = null;
     let containerDimension = null;
 
-    console.log("here: ", data);
     useEffect(() => {
         containerDimension = width.current.getBoundingClientRect();
         containerWidth = containerDimension.width;

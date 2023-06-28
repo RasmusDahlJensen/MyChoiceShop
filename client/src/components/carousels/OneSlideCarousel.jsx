@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 function OneSlideCarousel() {
-    console.log(highlightsSlides);
+    
   return (
     <Carousel 
         useKeyboardArrows={true}

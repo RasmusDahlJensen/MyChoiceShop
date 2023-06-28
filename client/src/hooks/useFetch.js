@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (url) => {
+export const useFetch = (url, options) => {
 	const [data, setData] = useState();
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
-
+	console.log(options);
 	useEffect(() => {
 		setLoading(true);
-		fetch(url, {
+		fetch(url, options ? options : {
 			headers: {
 				"content-type": "application/json"
 			}
