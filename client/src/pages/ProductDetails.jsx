@@ -17,16 +17,32 @@ function Product() {
   const {id} = useParams()
 
   const [ratingNumber, setRatingNumber] = useState(null)
+  const [starArray, setStarArray] = useState([])
 
   const { data, error, loading } = useFetch(`/api/product/${id}`)
   const {data: reviewData } = useFetch(`/api/reviews/${id}`)
 
   useEffect(() => {
-    if(reviewData && reviewData.length){
-      setRatingNumber(calculateReviews(reviewData))
-    } 
+    let emptyStars = 0;
 
-  }, [reviewData])
+    if(reviewData && reviewData.length){
+      const n = calculateReviews(reviewData)
+      setRatingNumber(n)
+      emptyStars = 5 - parseInt(n)
+    } 
+    if(ratingNumber){
+      let stars = []
+      for(let i = 0; i < parseInt(ratingNumber); i++){
+        stars.push(true)
+      }
+      for(let i = 0; i < emptyStars; i++){
+        stars.push(false)
+      }
+      setStarArray(stars)
+    }
+    
+
+  }, [reviewData, ratingNumber])
 
   if(loading){
     return (
@@ -49,20 +65,17 @@ function Product() {
         <div className={styles.aside}>
           <h1>{data.product_name}</h1>
           <p className={styles.rating}>
-            {reviewData && reviewData.length && reviewData ? (
+            {reviewData && reviewData.length && starArray ? starArray.map((boolean)=> {
+              if(boolean){
+                return <BsStarFill />
+              }else{
+                return <BsStar />
+              }
+            }) : (
               <>
-                <BsStarFill/>
-                <BsStarFill/>
                 <BsStar/>
                 <BsStar/>
                 <BsStar/>
-              
-              </>
-            ) : (
-              <>
-                <BsStarFill/>
-                <BsStarFill/>
-                <BsStarHalf/>
                 <BsStar/>
                 <BsStar/>
               </>

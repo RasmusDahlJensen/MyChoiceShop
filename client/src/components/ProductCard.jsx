@@ -1,11 +1,9 @@
 import React from 'react'
 
 import styles from "./ProductCard.module.css"
-import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 
 function ProductCard({data, classes}) {
-  console.log(data);
   return (
     <Link to={`/product/${data.id}`} style={{textDecoration: "none", color: "black"}}>
       <article className={`${styles.card} ${classes}`}>
