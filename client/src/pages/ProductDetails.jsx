@@ -11,10 +11,12 @@ import styles from "./ProductDetail.module.css"
 import ReviewForm from '../components/forms/ReviewForm'
 import SkeletonProductDetails from '../skeletons/SkeletonProductDetails'
 import Review from '../components/Review'
+import { useCart } from '../store/useCart'
 
 
 function Product() {
   const {id} = useParams()
+  const { addProduct } = useCart()
 
   const [ratingNumber, setRatingNumber] = useState(null)
   const [starArray, setStarArray] = useState([])
@@ -94,7 +96,10 @@ function Product() {
           <div className={styles.pricing}>
             <h3>Kr {data.price}</h3>
             <div className={styles.order}>
-              <button className='btn'>
+              <button 
+              className='btn'
+               onClick={() => addProduct(data)}
+               >
                 put i kurven
               </button>
               <p className='secondary-btn'>

@@ -93,24 +93,16 @@ export default function Navbar() {
 						/>
 					)}
 
-					{!showCart && (
-						<AiOutlineShoppingCart
-							onClick={() => {
-								if (setShowMenu || showLogin) {
-									setShowLogin(false);
-									setShowMenu(false);
-								}
-								setShowCart(true);
-							}}
-						/>
-					)}
-					{showCart && (
-						<AiOutlineShoppingCart
-							onClick={() => {
-								setShowCart(false);
-							}}
-						/>
-					)}
+
+					<AiOutlineShoppingCart
+						onClick={() => {
+							if(showCart && showMenu || showLogin) {
+								setShowLogin(false);
+								setShowMenu(false);
+							}
+							setShowCart(!showCart);
+						}}
+					/>
 
 					{!showMenu && (
 						<AiOutlineMenu

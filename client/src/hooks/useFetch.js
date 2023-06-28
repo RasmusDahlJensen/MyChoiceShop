@@ -4,7 +4,7 @@ export const useFetch = (url, options) => {
 	const [data, setData] = useState();
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
-	console.log(options);
+	
 	useEffect(() => {
 		setLoading(true);
 		fetch(url, options ? options : {
