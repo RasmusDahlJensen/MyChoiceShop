@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 //icons
 import { BiLogIn } from "react-icons/bi";
-import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+	AiOutlineMenu,
+	AiOutlineClose,
+	AiOutlineShoppingCart,
+} from "react-icons/ai";
 
 //styles
 import styles from "./navbar.module.css";
@@ -40,11 +44,13 @@ export default function Navbar() {
 			}
 
 			const data = await response.json();
-			// console.log("Response Data:", data);
+			// console.log("Response Data:", data.user);
 			const token = data.token;
+			const user = data.user;
 
 			// Set the token in session storage
 			sessionStorage.setItem("token", token);
+			sessionStorage.setItem("userId", user.id);
 		} catch (error) {
 			// Login error handling
 			console.error(error);
@@ -61,53 +67,62 @@ export default function Navbar() {
 
 				<div className={styles.icons}>
 					{/* login, menu and cart icon */}
-					{!showLogin && <BiLogIn onClick={() => {
-                        if(showMenu || showCart){
-                            setShowMenu(false)
-                            setShowCart(false)
-                        }
-                        setShowLogin(true)
-                    }} />}
+					{!showLogin && (
+						<BiLogIn
+							onClick={() => {
+								if (showMenu || showCart) {
+									setShowMenu(false);
+									setShowCart(false);
+								}
+								setShowLogin(true);
+							}}
+						/>
+					)}
 					{showLogin && <BiLogIn onClick={() => setShowLogin(false)} />}
 
-                    {!showCart && <AiOutlineShoppingCart onClick={() => {
-                        if(setShowMenu || showLogin){
-                            setShowLogin(false)
-                            setShowMenu(false)
-                        }
-                        setShowCart(true)
-                    }}/>}
-                    {showCart && <AiOutlineShoppingCart onClick={() => {
-                        setShowCart(false)
-                    }}/>}
+					{!showCart && (
+						<AiOutlineShoppingCart
+							onClick={() => {
+								if (setShowMenu || showLogin) {
+									setShowLogin(false);
+									setShowMenu(false);
+								}
+								setShowCart(true);
+							}}
+						/>
+					)}
+					{showCart && (
+						<AiOutlineShoppingCart
+							onClick={() => {
+								setShowCart(false);
+							}}
+						/>
+					)}
 
-					{!showMenu && <AiOutlineMenu onClick={() => {
-                        if(showLogin || showCart){
-                            setShowLogin(false)
-                            setShowCart(false)
-                        }
-                        setShowMenu(true)
-                        }} />}
+					{!showMenu && (
+						<AiOutlineMenu
+							onClick={() => {
+								if (showLogin || showCart) {
+									setShowLogin(false);
+									setShowCart(false);
+								}
+								setShowMenu(true);
+							}}
+						/>
+					)}
 					{showMenu && <AiOutlineClose onClick={() => setShowMenu(false)} />}
-                        
 				</div>
 
 				{/* menu  links*/}
-				{showMenu && (
-					<NavbarMenu setShowMenu={setShowMenu}/>
-				)}
+				{showMenu && <NavbarMenu setShowMenu={setShowMenu} />}
 
 				{/* Login */}
 				{showLogin && (
-					<Login handleLogin={handleLogin} setShowLogin={setShowLogin}/>
+					<Login handleLogin={handleLogin} setShowLogin={setShowLogin} />
 				)}
 
-                {/* cart */}
-                {showCart && (
-					<Cart />
-                )}
-
-
+				{/* cart */}
+				{showCart && <Cart />}
 			</div>
 		</nav>
 	);
