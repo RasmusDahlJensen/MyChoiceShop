@@ -5,12 +5,16 @@ function SkeletonProductDetails() {
   return (
     <div className="skeleton-wrapper skeleton-animation">
         <div className="skeleton-product-details">
-            <SkeletonElement type="thumbnail"/>
-            <SkeletonElement type="title"/>
-            <SkeletonElement type="title"/>
-            <SkeletonElement type="text"/>
-            <SkeletonElement type="text"/>
-            <SkeletonElement type="text"/>
+            <div className="pic">
+                <SkeletonElement type="thumbnail"/>
+            </div>
+           <div className="aside">
+                <SkeletonElement type="title"/>
+                <SkeletonElement type="title"/>
+                <SkeletonElement type="text"/>
+                <SkeletonElement type="text"/>
+                <SkeletonElement type="text"/>
+           </div>
         </div>
     </div>
   )

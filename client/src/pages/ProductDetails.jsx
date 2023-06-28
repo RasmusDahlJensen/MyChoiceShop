@@ -29,7 +29,11 @@ function Product() {
   }, [reviewData])
 
   if(loading){
-    return <SkeletonProductDetails />
+    return (
+      <div className="container">
+        <SkeletonProductDetails />
+      </div>
+    )
   }
 
   if(error){

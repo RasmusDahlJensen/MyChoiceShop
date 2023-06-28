@@ -150,3 +150,39 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }
+
+
+/* styles for cart */
+.cart{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    background-color: rgba(39, 39, 37, 0.3);
+    padding: 20px;
+}
+.cartCard{
+    display: flex;
+    gap: 20px;
+}
+.cartText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cartText *{
+    margin: 0;
+    padding: 0;
+}
+.cartText span{
+    display: flex;
+    justify-content: space-between;
+}
+.cartText h4{
+    font-weight: 400;
+}
+.cart img{
+    height: 50px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}

@@ -12,7 +12,14 @@ class CategoryController {
 
     findAll = async (req, res) => {
         try{
-            const result = await CategoryModel.findAll()
+            const result = await CategoryModel.findAll({
+                include: [
+                    {
+                        model: ProductModel,
+                        limit: 10,
+                    }
+                ]
+            })
         
             res.json(result)
         }catch(err){
@@ -112,7 +119,6 @@ class CategoryController {
         
         return true
     }
-    
 
 }
 

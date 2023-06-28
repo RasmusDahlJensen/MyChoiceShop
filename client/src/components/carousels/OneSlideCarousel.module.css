@@ -1,52 +1,44 @@
-.carousel{
-    display: flex;
-    gap: 2rem;
-    overflow: hidden;
-    position: relative;
-    scroll-behavior: smooth;
-    margin-bottom: 4rem;
-    position: relative;
-    padding: 0 2rem;
-    user-select: none;
-}
-.carouselContainer{
-    position: relative;
-}
-.carousel img{
-    width: 107%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-.carouselContainer .left, .carouselContainer .right{
-    font-size: 2rem;
-    transition: opacity 0.3s;
-    z-index: 10;
-}
-.carouselContainer .left.active:hover, .carouselContainer .right.active:hover{
-    color: #DAA520;
+.left{
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    z-index: 2;
 }
 .right{
     position: absolute;
-    right: 1rem;
     top: 50%;
-    transform: translateY(-50%);
+    right: 0%;
+    z-index: 2;
 }
-.left{
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.nav{
-    display: flex;
+.left, .right{
+    background-color: #fafafa;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
     place-content: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    transition: opacity 0.2s;
 }
-.nav svg:hover{
+.left:hover, .right:hover{
     opacity: 0.5;
 }
-.picked{
-    opacity: 0.5;
+.left svg{
+    transform: translateX(-10%);
+}
+.right svg{
+    transform: translateX(10%);
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+}
+.active{
+    opacity: 40%;
 }

@@ -88,7 +88,7 @@ export default function Navbar() {
 
 				</div>
 
-				{/* menu */}
+				{/* menu  links*/}
 				{showMenu && (
 					<ul>
 						<li>
@@ -103,22 +103,7 @@ export default function Navbar() {
 						</li>
 						<li>
 							<Link to="/category/2" onClick={() => setShowMenu(false)}>
-								Kategori #2
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/3" onClick={() => setShowMenu(false)}>
-								Kategori #3
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/4" onClick={() => setShowMenu(false)}>
-								Kategori #4
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/5" onClick={() => setShowMenu(false)}>
-								Kategori #5
+								Telefoner
 							</Link>
 						</li>
 					</ul>
@@ -166,8 +151,12 @@ export default function Navbar() {
                 <div className={styles.cart}>
                     <div className={styles.cartCard}>
                         <img src="https://images.samsung.com/is/image/samsung/p6pim/hk_en/galaxy-book/feature/hk_en-feature-thin-as-a-smartphone--powerful-as-a-pc-430327739?$FB_TYPE_A_MO_JPG$" alt="img" />
-                        <div className="side">
+                        <div className={styles.cartText}>
                             <h4>Samsung galaxy book</h4>
+							<span> 
+								<p>kr 400</p>
+								<p>x1</p>
+							</span>
                         </div>
                     </div>
                 </div>

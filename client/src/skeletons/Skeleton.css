@@ -45,6 +45,27 @@
     padding: 10px;
 }
 
+
+@media (min-width: 860px) {
+    .skeleton-product-details{
+        display: flex;
+        gap: 20px;
+        width: 100%;
+    }
+    .skeleton-product-details .pic{
+        width: 50%;
+        object-fit: contain;
+    }
+    .skeleton-product-details .aside{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    .rating{
+        margin: 0;
+    }
+}
+
 /* animation effect */
 @keyframes dim {
     0%{
