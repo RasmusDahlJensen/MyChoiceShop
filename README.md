@@ -1,4 +1,4 @@
-# MyChoiceShop-Backend
+# MyChoiceShop
 SQL diagram:
 https://drawsql.app/teams/rasmus-js-team/diagrams/myownchoice-shop
 
